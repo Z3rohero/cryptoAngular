@@ -3,13 +3,14 @@ import { HttpClient } from '@angular/common/http';
 
 
 //para declar los datos que se encuentra el array
-interface Coin {
+interface Coins {
   id: string;
   name: string;
   symbol: string;
   image: string;
   current_price:number;
   price_change_percentage_24: number;
+  total_volume:number;
 }
 
 @Component({
@@ -20,11 +21,12 @@ interface Coin {
 export class AppComponent implements OnInit  {
   constructor(private http: HttpClient) { }
    
-  coins: [] = []
+  coins: Coins [] = []
   ngOnInit() {
-    this.http.get('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false')
+    this.http.get<Coins[]>('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false')
     .subscribe((res) => {
       console.log(res);
+      this.coins = res;
   }
   );
    }

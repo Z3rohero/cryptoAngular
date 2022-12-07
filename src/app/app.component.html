@@ -1,1 +1,17 @@
-<h1>hey xd</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Cualquier cosa</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let coin of coins">
+      <td>
+        <img [src]="coin.image" alt="coin.name"/>
+        <span>{{ coin.name }}</span>
+        <span>{{ coin.symbol }}</span>
+       
+      </td>
+    </tr>
+  </tbody>
+</table>
